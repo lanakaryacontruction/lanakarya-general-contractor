@@ -125,47 +125,105 @@
             text-transform: uppercase; margin-bottom: 40px; text-align: center;
         }
         @media (min-width: 768px) { .section-title { font-size: 2.8rem; margin-bottom: 50px; } }
+                /* Kartu layanan dengan desain lebih halus dan tombol detail */
         .service-card {
-            background: white; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            padding: 35px 20px; text-align: center; transition: all 0.4s; min-height: 280px;
+            background: #ffffff; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(74, 60, 49, 0.05);
+            padding: 30px 20px;
+            text-align: center; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            height: 100%;
+            border: 1px solid rgba(74, 60, 49, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Memastikan tombol di posisi bawah */
         }
-        .service-card:hover { transform: translateY(-12px); box-shadow: 0 18px 38px rgba(0,0,0,0.15); }
+
+        .service-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(74, 60, 49, 0.12);
+            border-color: var(--accent);
+        }
+
         .service-icon {
-            width: 90px; height: 90px; border-radius: 50%; background: var(--primary);
-            color: white; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; font-size: 2.5rem;
+            width: 65px; 
+            height: 65px; 
+            border-radius: 50%; 
+            background: var(--light);
+            color: var(--accent);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            margin: 0 auto 20px; 
+            font-size: 1.6rem;
+            transition: 0.3s;
         }
-        .service-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 12px; color: var(--primary); }
-        .service-desc { font-size: 1rem; color: #555; }
-        .project-gallery {
-            display: grid; grid-template-columns: 1fr; gap: 12px;
+
+        .service-card:hover .service-icon {
+            background: var(--accent);
+            color: white;
         }
-        @media (min-width: 576px) { .project-gallery { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 992px) { .project-gallery { grid-template-columns: repeat(3, 1fr); gap: 15px; } }
-        /* Perbaikan Galeri */
+
+        /* Desain Tombol Lihat Detail */
+        .btn-detail {
+            margin-top: 20px;
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary);
+            border: 1px solid var(--accent);
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-detail:hover {
+            background-color: var(--accent);
+            color: white !important;
+        }
+
+
+       /* Update Galeri: Foto lebih kecil & sejajar horizontal */
 .project-gallery {
     display: grid;
-    gap: 15px;
-    /* Otomatis membuat kolom berdasarkan lebar layar */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px; /* Jarak antar foto lebih rapat */
+    grid-template-columns: repeat(3, 1fr); /* Mobile: 3 kolom */
+}
+
+@media (min-width: 768px) {
+    .project-gallery {
+        grid-template-columns: repeat(5, 1fr); /* Tablet: 5 kolom */
+    }
+}
+
+@media (min-width: 1200px) {
+    .project-gallery {
+        grid-template-columns: repeat(6, 1fr); /* Desktop: 6 kolom */
+    }
 }
 
 .project-gallery img {
     width: 100%;
-    height: 280px;      /* Tinggi wajib seragam */
-    object-fit: cover;   /* Agar foto tidak penyet/gepeng */
-    border-radius: 12px;
-    transition: transform 0.4s ease;
+    height: 140px;       /* Tinggi diperkecil agar foto tampak kecil */
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-@media (min-width: 576px) { 
-    .project-gallery { grid-template-columns: repeat(2, 1fr); } 
+.project-gallery img:hover {
+    transform: scale(1.08); /* Efek zoom sedikit saat hover */
 }
 
-@media (min-width: 992px) { 
-    .project-gallery { 
-        grid-template-columns: repeat(3, 1fr); /* 3 Kolom sejajar di desktop */
-    } 
+.project-gallery img:hover {
+    transform: scale(1.08); /* Efek hover sedikit membesar */
+}
+
+/* Menghilangkan padding figure agar lebih rapat secara horizontal */
+.project-gallery figure {
+    margin: 0;
 }
 
 .project-gallery img {
@@ -198,18 +256,22 @@
             .btn-lg { font-size: 1rem; padding: 0.75rem 2rem; }
             .service-card { min-height: auto; padding: 30px 15px; }
         }
-/* CSS untuk Peta agar Responsif dan Estetis */
+/* CSS untuk Peta yang jauh lebih kecil */
 .map-container {
     overflow: hidden;
-    border-radius: 15px; /* Menyesuaikan desain rounded Anda */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     position: relative;
-    height: 450px; /* Tinggi peta di desktop */
+    height: 250px; /* Tinggi sangat ringkas di desktop */
+    max-width: 500px; /* Lebar dibatasi hanya 500px */
+    margin: 0 auto; 
+    border: 1px solid #ddd;
 }
 
 @media (max-width: 768px) {
     .map-container {
-        height: 300px; /* Tinggi peta lebih pendek di HP */
+        height: 200px; /* Lebih kecil lagi di HP */
+        max-width: 90%; /* Mengikuti lebar layar HP */
     }
 }
 
@@ -218,7 +280,8 @@
     height: 100%;
     border: 0;
 }
-    </style>
+
+</style>
     <meta name="google-site-verification" content="EUqJ6C1xvCesWhaPGr7Vlky5ifflym6rlMuSTGphOGE" />
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
@@ -282,10 +345,10 @@
         </div>
     </div>
 </section>
-    <!-- Tentang Kita -->
+    <!-- Tentang Kami -->
     <section id="about" class="py-5">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-en="ABOUT US">TENTANG KITA</h2>
+            <h2 class="section-title" data-aos="fade-up" data-en="ABOUT US">TENTANG Kami</h2>
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
                     <img src="assets/about-image.jpg" alt="Tentang Kita Lana Karya" class="img-fluid rounded shadow" loading="lazy">
@@ -301,43 +364,52 @@
     </section>
 
     <!-- Layanan Kami -->
-    <section id="services" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="section-title" style="color: #4a3c31 !important; margin-bottom: 50px;" data-aos="zoom-in" data-en="OUR SERVICES">LAYANAN KAMI</h2>
-        
-        <div class="row g-4 text-center justify-content-center">
-            <div class="col-md-4 d-flex" data-aos="zoom-in-up" data-aos-delay="100">
-                <div class="service-card w-100 d-flex flex-column">
-                    <div class="service-icon"><i class="fas fa-cubes"></i></div>
-                    <h4 class="service-title" data-en="Construction Works">Pekerjaan Konstruksi</h4>
-                    <p class="service-desc flex-grow-1" data-en="New builds for houses, cafes, pavilions, concrete & steel structures with premium quality and on schedule.">
-                        Pembangunan gedung, rumah, cafe, pavilion, struktur beton & baja berkualitas tinggi dan tepat jadwal.
-                    </p>
+            <section id="services" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="zoom-in" data-en="OUR SERVICES">LAYANAN KAMI</h2>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-cubes"></i></div>
+                            <h4 class="service-title" data-en="Construction Works">Pekerjaan Konstruksi</h4>
+                            <p class="service-desc" data-en="New builds for houses, cafes, pavilions, concrete & steel structures.">
+                                Pembangunan gedung, rumah, cafe, pavilion, struktur beton & baja berkualitas tinggi.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/6285797584109?text=Halo%20Lana%20Karya%2C%20saya%20ingin%20tahu%20detail%20mengenai%20Pekerjaan%20Konstruksi." class="btn-detail" data-en="View Details">Lihat Detail</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4 d-flex" data-aos="zoom-in-up" data-aos-delay="200">
-                <div class="service-card w-100 d-flex flex-column">
-                    <div class="service-icon"><i class="fas fa-tools"></i></div>
-                    <h4 class="service-title" data-en="Renovation">Renovasi</h4>
-                    <p class="service-desc flex-grow-1" data-en="Revamping old houses, shops, offices into modern, functional spaces with cost efficiency.">
-                        Merombak & mempercantik rumah, ruko, kantor atau bangunan existing menjadi lebih fungsional & estetis.
-                    </p>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-tools"></i></div>
+                            <h4 class="service-title" data-en="Renovation">Renovasi</h4>
+                            <p class="service-desc" data-en="Revamping old buildings into modern, functional spaces.">
+                                Merombak bangunan existing menjadi lebih fungsional, estetis, dan efisien secara biaya.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/6285797584109?text=Halo%20Lana%20Karya%2C%20saya%20ingin%20tahu%20detail%20mengenai%20layanan%20Renovasi." class="btn-detail" data-en="View Details">Lihat Detail</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4 d-flex" data-aos="zoom-in-up" data-aos-delay="300">
-                <div class="service-card w-100 d-flex flex-column">
-                    <div class="service-icon"><i class="fas fa-home"></i></div>
-                    <h4 class="service-title" data-en="Interior / Exterior">Interior/Eksterior</h4>
-                    <p class="service-desc flex-grow-1" data-en="Premium interior & exterior design: wood finishing, canopy, vertical garden, modern facade.">
-                        Desain & realisasi interior modern, eksterior menarik, canopy, taman, hingga finishing premium.
-                    </p>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-home"></i></div>
+                            <h4 class="service-title" data-en="Interior / Exterior">Interior/Eksterior</h4>
+                            <p class="service-desc" data-en="Modern interior & exterior design: wood finishing, and creative facade.">
+                                Desain & realisasi interior modern, eksterior menarik, hingga finishing premium.
+                            </p>
+                        </div>
+                        <a href="https://wa.me/6285797584109?text=Halo%20Lana%20Karya%2C%20saya%20ingin%20tahu%20detail%20mengenai%20Layanan%20Interior%20dan%20Eksterior." class="btn-detail" data-en="View Details">Lihat Detail</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Projek Kami -->
     <section id="projects" class="py-5">
@@ -349,50 +421,65 @@
             <p class="text-center mb-5" data-aos="fade-up" data-aos-delay="300" data-en="&ldquo;Lana Karya collaborates&rdquo;, ready to provide improvisation solutions to existing difficulties.">
                 “Lanakarya berkolaborasi”, siap memberikan solusi improvisasi terhadap kesulitan yang ada.
             </p>
+        <div class="project-gallery mb-5" data-aos="fade-up">
+            <a href="assets/projek-kami-1.jpg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-1.jpg" alt="Proyek 1" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-2.jpg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-2.jpg" alt="Proyek 2" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-3.jpg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-3.jpg" alt="Proyek 3" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-4.jpg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-4.jpg" alt="Proyek 4" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-5.jpg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-5.jpg" alt="Proyek 5" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-6.jpg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-6.jpg" alt="Proyek 6" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-8.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-8.jpeg" alt="Proyek 8" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-9.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-9.jpeg" alt="Proyek 9" loading="lazy">
+            </a>
+            <a href="assets/projek-kami-10.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-10.jpeg" alt="Proyek 10" loading="lazy">
+            </a>
+             <a href="assets/projek-kami-11.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-11.jpeg" alt="Proyek 11" loading="lazy">
+            </a>
+             <a href="assets/projek-kami-12.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-12.jpeg" alt="Proyek 12" loading="lazy">   
+             </a>
+             <a href="assets/projek-kami-13.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-13.jpeg" alt="Proyek 13" loading="lazy">   
+             </a>
+             <a href="assets/projek-kami-14.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-14.jpeg" alt="Proyek 14" loading="lazy">   
+                </a>
+             <a href="assets/projek-kami-15.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-15.jpeg" alt="Proyek 15" loading="lazy">    
+                </a>
+             <a href="assets/projek-kami-16.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-16.jpeg" alt="Proyek 18" loading="lazy">   
+               </a>
+             <a href="assets/projek-kami-18.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-18.jpeg" alt="Proyek 18" loading="lazy">   
+                  </a>
+             <a href="assets/projek-kami-19.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-19.jpeg" alt="Proyek 19" loading="lazy">   
+                  </a>
+             <a href="assets/projek-kami-20.jpeg" data-lightbox="gallery-main" data-title="Lana Karya Project">
+                <img src="assets/projek-kami-20.jpeg" alt="Proyek 120" loading="lazy">  
+           </a>                                                                                                    
+        </div>
+    </div>
+</section>
 
-           <div class="project-gallery mb-5" data-aos="fade-up">
-    <figure class="m-0">
-        <a href="assets/projek-kami-1.jpg" data-lightbox="gallery-main" data-title="Pembangunan Struktur Utama - Lana Karya">
-            <img src="assets/projek-kami-1.jpg" alt="Foto yang menampilkan hasil pembangunan atau desain konstruksi awal sebagai representasi kualitas kerja." loading="lazy">
-        </a>
-        <figcaption class="text-muted small mt-2 text-center">Foto yang menampilkan hasil pembangunan atau desain konstruksi awal sebagai representasi kualitas kerja.</figcaption>
-    </figure>
-
-    <figure class="m-0">
-        <a href="assets/projek-kami-2.jpg" data-lightbox="gallery-main" data-title="Detail Finishing Eksterior - Lana Karya">
-            <img src="assets/projek-kami-2.jpg" alt="Detail finishing eksterior bangunan modern" loading="lazy">
-        </a>
-        <figcaption class="text-muted small mt-2 text-center">Fokus pada detail bangunan yang menonjolkan sisi inovatif dari konstruksi.</figcaption>
-    </figure>
-
-    <figure class="m-0">
-        <a href="assets/projek-kami-3.jpg" data-lightbox="gallery-main" data-title="Renovasi Bangunan Komersial - Lana Karya">
-            <img src="assets/projek-kami-3.jpg" alt="Hasil renovasi bangunan komersial yang fungsional" loading="lazy">
-        </a>
-        <figcaption class="text-muted small mt-2 text-center">Renovasi Bangunan Komersial</figcaption>
-    </figure>
-
-    <figure class="m-0">
-        <a href="assets/projek-kami-4.jpg" data-lightbox="gallery-main" data-title="Desain Fasad Inovatif - Lana Karya">
-            <img src="assets/projek-kami-4.jpg" alt="Desain fasad bangunan dengan konsep kreatif" loading="lazy">
-        </a>
-        <figcaption class="text-muted small mt-2 text-center">Desain Fasad Inovatif</figcaption>
-    </figure>
-
-    <figure class="m-0">
-        <a href="assets/projek-kami-5.jpg" data-lightbox="gallery-main" data-title="Konstruksi Baja & Beton - Lana Karya">
-            <img src="assets/projek-kami-5.jpg" alt="Implementasi struktur baja dan beton pada proyek kreatif" loading="lazy">
-        </a>
-        <figcaption class="text-muted small mt-2 text-center">Foto yang menonjolkan kreativitas dalam mengubah konsep sulit menjadi nyata.</figcaption>
-    </figure>
-
-    <figure class="m-0">
-        <a href="assets/projek-kami-6.jpg" data-lightbox="gallery-main" data-title="Penyelesaian Akhir (Final Touch) - Lana Karya">
-            <img src="assets/projek-kami-6.jpg" alt="Hasil akhir pembangunan gedung dengan standar premium" loading="lazy">
-        </a>
-        <figcaption class="text-muted small mt-2 text-center">Hasil akhir pembangunan gedung dengan standar premium</figcaption>
-    </figure>
-</div>
 
             <h3 class="section-title mt-5" data-aos="zoom-in" data-en="OTHER PROJECTS">PROJEK LAINNYA</h3>
 
@@ -408,6 +495,7 @@
                     <div id="tanatapBekasi" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
     <div class="accordion-body">
         <div class="project-gallery">
+            </a>
             <a href="assets/tanatap-bekasi-1.jpg" data-lightbox="tanatap-bekasi" data-title="Tanatap Bekasi: Integrasi struktur beton ekspos dengan elemen alam.">
                 <img src="assets/tanatap-bekasi-1.jpg" alt="Eksterior ikonik Tanatap Bekasi dengan desain arsitektur modern" loading="lazy">
             </a>
@@ -427,10 +515,10 @@
                 <img src="assets/tanatap-bekasi-6.jpg" alt="Perspektif luas bangunan Tanatap Bekasi" loading="lazy">
             </a>
       
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+           </div>
+          </div>
+         </div>
 
                 <!-- Tanatap Ampera -->
                 <div class="accordion-item" data-aos="fade-right" data-aos-delay="200">
@@ -687,29 +775,34 @@
     </div>
 </section>
 <section id="location" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">LOKASI KAMI</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-10" data-aos="zoom-in">
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.380790656564!2d106.7319969!3d-6.2134072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7c65bb1830f%3A0xcba020e17fdc8731!2sWarHam!5e0!3m2!1sid!2sid!4v1768913137862!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold" data-aos="fade-up" style="font-size: 1.5rem; color: var(--primary);">LOKASI KAMI</h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-6" data-aos="zoom-in">
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.24151703274!2d106.75947792623348!3d-6.229746452292398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e059102f43%3A0x60098f7e73e97022!2sJakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
                 </div>
-                <div class="text-center mt-4">
-                    <p class="mb-1"><strong>Lana Karya Construction</strong></p>
-                    <p class="text-muted" data-en="Jakarta, Indonesia">Jakarta, Indonesia</p>
-                    <a href="https://maps.app.goo.gl/NMh1DRUAwn3ECyot7" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+                
+                <div class="text-center mt-3">
+                    <p class="mb-0" style="font-size: 0.9rem;"><strong>Lana Karya Construction</strong></p>
+                    <p class="text-muted" style="font-size: 0.85rem;" data-en="Jakarta, Indonesia">Jakarta, Indonesia</p>
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-outline-dark btn-sm" style="border-radius: 20px; font-size: 0.75rem; padding: 4px 15px;">
                         <i class="fas fa-directions me-1"></i> Petunjuk Arah
                     </a>
                 </div>
+                
             </div>
         </div>
     </div>
 </section>
+
+
 
     <!-- Footer -->
     <footer class="text-center">
